@@ -1,0 +1,36 @@
+import mongoose from 'mongoose';
+import {taskSchema} from "./Task.js"
+
+const projectSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required:true,
+    },
+    description: {
+        type:String,
+        required:true,
+    },
+    startDate: {
+        type: Date
+    },
+    endDate: {
+        type: Date
+    },
+    tasks: [taskSchema], // creating relation between Task Model
+    
+    //** createdAt: {
+    //    type: Date,
+    //   defaulte: Date.now()
+    //},   == we can delete it since timestamps:true will give same details
+
+},
+{timestamps: true},
+);
+
+// index
+// pre save middlewares
+// methods/ 
+
+const Project = new mongoose.model('Project', projectSchema)
+
+export default Project;
